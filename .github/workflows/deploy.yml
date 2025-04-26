@@ -19,11 +19,8 @@ jobs:
 
       - name: Configure kubeconfig
         run: |
-          # ensure the directory exists
-          mkdir -p $HOME/.kube
-          # decode your secret into the file
-          echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > $HOME/.kube/config
-
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG_DATA }}" > ~/.kube/config
 
       - name: Apply Kubernetes manifests
         run: |
