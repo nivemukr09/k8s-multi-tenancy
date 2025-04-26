@@ -1,0 +1,9 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: team-alpha
+  name: team-alpha-role
+rules:
+- apiGroups: ["", "apps"] 
+  resources: ["pods", "services", "deployments"]
+  verbs: ["get", "list", "create", "delete"]
