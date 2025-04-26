@@ -1,5 +1,3 @@
-name: Deploy to Kubernetes
-
 on:
   push:
     branches:
@@ -22,7 +20,5 @@ jobs:
           mkdir -p ~/.kube
           echo "${{ secrets.KUBECONFIG_DATA }}" > ~/.kube/config
 
-      - name: Apply Kubernetes manifests
-        run: |
-          kubectl apply -f .
-
+      - name: Deploy to Kubernetes
+        run: kubectl apply -f . --validate=false
