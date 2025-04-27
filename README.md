@@ -1,7 +1,8 @@
 ## Kubernetes Multi-Tenancy Setup
 This project demonstrates a basic multi-tenancy setup in Kubernetes, where different teams (like team-alpha and team-beta) are isolated using Namespaces, Network Policies, and RBAC (Role-Based Access Control).
-## Project Structure
+## Project Folder Structure
 ```bash
+.
 ├── team-alpha-deployment.yaml
 ├── team-alpha-networkpolicy.yaml
 ├── team-alpha-role.yaml
@@ -10,6 +11,28 @@ This project demonstrates a basic multi-tenancy setup in Kubernetes, where diffe
 ├── team-beta-networkpolicy.yaml
 ├── team-beta-role.yaml
 ├── team-beta-rolebinding.yaml
+```
+## 🖼️ Project Architecture
+```bash
+                      +----------------+
+                      | Kubernetes      |
+                      | Cluster         |
+                      +----------------+
+                            |
+          +-----------------+-----------------+
+          |                                   |
+  +-------------------+              +-------------------+
+  | Namespace:        |              | Namespace:        |
+  |   team-alpha      |              |   team-beta       |
+  +-------------------+              +-------------------+
+          |                                   |
++--------------------+              +--------------------+
+| Deployment: Alpha  |              | Deployment: Beta   |
+| Pod(s)             |              | Pod(s)             |
++--------------------+              +--------------------+
+| NetworkPolicy      |              | NetworkPolicy      |
+| Role + RoleBinding |              | Role + RoleBinding |
++--------------------+              +--------------------+
 ```
 
 Each team has:
